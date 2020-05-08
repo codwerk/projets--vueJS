@@ -1,12 +1,12 @@
 <template lang="pug">
     .joueur(:id="joueur.libelle")
       img(:src="joueur.src")
+      
       .joueur-inner
-        
-        .joueur-name-wrap
-          h2.joueur-nC {{ joueur.nomComplet }}
         .joueur-image-wrap
           img(:src="joueur.club")
+        .joueur-name-wrap
+          h2.joueur-nC {{ joueur.nomComplet }}
         .joueur-details
           h2 {{ joueur.buts }} {{ buts === 1 ? 'but' : 'buts'}}
           p {{ joueur.age }}
@@ -34,52 +34,51 @@ export default {
         background-repeat: no-repeat;
         transition: all 350ms ease-in-out;
 
-        &:hover {
-
+        
+        &:hover .joueur-inner {
+          transform: translate(-50%, -50%);
+          display: flex;
+          justify-content: space-evenly;
+          flex-direction: column;
+        }
+        
+        .joueur-image-wrap {
+          left: 20px;
+          top: 20px;
+          img {
+            width: 25%;
+          }
         }
 
-        /*&:nth-child(1) {
-          background-image: url('../assets/img/lm.png');
-        }
-
-        &:nth-child(2) {
-          background-image: url('../assets/img/cr.png');
-        }
-
-        &:nth-child(3) {
-          background-image: url('../assets/img/rl.png');
-        }
-
-        &:nth-child(4) {
-          background-image: url('../assets/img/km.png');
-        }*/
           img {
             width: 100%;
             z-index: -1;
             object-fit: cover;
           }
-                  
+
           .joueur-inner {
             
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-40%, -10%);
+            transform: translate(-50%, 30%);
             width: 100%;
             height: 100%;
+            transition: all .3s ease;
 
             &::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 94%;
-                height: 95%;
-                background-image: linear-gradient(360deg, rgba(255, 255, 255, 0), rgb(205, 205, 205) 500%);
-                opacity: 0;
-                transition: all 300ms ease-in-out;
-                border-radius: 15px;
+              content: '';
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              //transform: translate(-50%, 20%);
+              transform: translate(-50%, -50%);
+              width: 94%;
+              height: 95%;
+              background-image: linear-gradient(360deg, rgba(255, 255, 255, 0), rgb(205, 205, 205) 500%);
+              opacity: 0;
+              transition: all 300ms ease-in-out;
+              border-radius: 15px;
             }
 
             &:hover::before {
@@ -88,24 +87,23 @@ export default {
 
             .joueur-name-wrap {
               .joueur-nC  {
-                  margin: 0;
+                  margin-bottom: 0px;
+                  margin-top: 5px;
                   padding: 0;
-                  color: #33d9b2;
+                  color: #000;
                   font-size: 20px;
                   text-transform: capitalize;
                   letter-spacing: 1px;
+                  padding: 0 20px;
+                  text-align: center;
 
-              }
-            }
-
-            .joueur-image-wrap {
-              img {
-                width: 25%;
               }
             }
 
             .joueur-details {
-
+                font-size: 10px;
+                color: #fff;
+                text-align: center;
             }
           }
 

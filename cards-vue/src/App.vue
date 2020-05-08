@@ -73,41 +73,34 @@ export default {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    
+
     .cards {
         height: 100vh;
-      
 
       @media screen and (min-width: 640px) {
         .container {
-        
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 0px 20px;
-        
-        .joueur-list {
-          display: flex;
-          flex-wrap: wrap;
-          flex-direction: row;
-          justify-content: space-between;
-          align-content: center;
-          height: 100vh;
+          max-width: 1000px;
+          margin: 0 auto;
+          padding: 0px 20px;
+
+          .joueur-list {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-between;
+            align-content: center;
+            height: 100vh;
+          }
         }
-      }
       }
 
       @media screen and (max-width: 640px) {
         .container {
-
           .joueur-list  {
-
             flex-direction: column;
           }
         }
       }
     }
-
-
-    
   }
 </style>
