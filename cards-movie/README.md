@@ -1,6 +1,7 @@
-# cards-vue
+# Cards Movie
 
 > Liste de films
+> Coder une application avec Nuxt JS et Axios (API)
 
 ## Build Setup
 
