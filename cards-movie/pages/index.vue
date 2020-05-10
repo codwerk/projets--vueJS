@@ -1,72 +1,73 @@
-<template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        cards-vue
-      </h1>
-      <h2 class="subtitle">
-        Liste de films
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  #app
+    section
+      .container__cards
+        .card__list 
+          
+          Card(v-for="movie in movies" :key="movie.id" :movie="movie")
+
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+
+import Card from '../components/card.vue';
+import axios from 'axios'
 
 export default {
   components: {
-    Logo
+    Card
+  },
+  data() {
+    return {
+      movies: []
+    }
+  },
+  mounted (){
+    axios.get('https://api.themoviedb.org/3/movie/popular?api_key=cc4c125990f5777406886df6fdb3e266&language=en-FR&page=1')
+           .then(response => this.movies = response.data.results 
+            //console.log(response)
+           )
+           .catch(erreur => this.movies = [{movie: "Erreur de chargement !"}])
   }
 }
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+<style lang="scss">
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+ #app {
+   section {
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
+     height: 100vh;
 
-.links {
-  padding-top: 15px;
-}
+      @media screen and (min-width: 641px) {
+
+        .container__cards {
+
+          max-width: 1000px;
+          margin: 0 auto;
+          padding: 0px 20px;
+          background: blue;
+
+          .card__list {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-between;
+
+          }
+        }
+      }
+     @media screen and (max-width: 640px) { 
+     .container__cards {
+       .card__list {
+        flex-direction: column;
+       }
+     }
+     }
+
+   }
+ }
+
+
+
 </style>
