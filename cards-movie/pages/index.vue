@@ -39,14 +39,17 @@ export default {
 
      height: 100vh;
 
+     .container__cards {
+        padding: 0px 20px;
+     }
+
       @media screen and (min-width: 641px) {
 
         .container__cards {
 
           max-width: 1000px;
           margin: 0 auto;
-          padding: 0px 20px;
-          background: blue;
+          //background: rgb(3,37,65);
 
           .card__list {
             display: flex;
@@ -60,7 +63,9 @@ export default {
      @media screen and (max-width: 640px) { 
      .container__cards {
        .card__list {
-        flex-direction: column;
+        display: flex;
+          flex-wrap: wrap;
+
        }
      }
      }
