@@ -1,60 +1,99 @@
-<template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
-  </div>
+<template lang="pug">
+  #app
+    section.header
+      .header-box
+        h1(v-scrollanimation) Lorem ipsum dolor sit amet
+        span(v-scrollanimation) Lorem, ipsum
+        p(v-scrollanimation) Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius aliquid repellat, excepturi ullam quo officiis necessitatibus fugit consectetur delectus adipisci ipsam, facere nesciunt quibusdam, velit doloremque! Numquam placeat inventore eveniet explicabo distinctio odio nulla, rem laudantium voluptatem iusto, perspiciatis ratione repudiandae, impedit iste culpa facere delectus quisquam. Omnis, tenetur odio!
+
+    Description
+    Images
 </template>
 
 <script>
+
+import Description from './assets/components/Description'
+import Images from './assets/components/Images'
+
 export default {
   name: 'app',
+  components: {Description, Images},
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
+body {
+  margin: 0;
+}
 #app {
+
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  .header {
+    background: url('./assets/images/bg-img.jpg');
+    background-size: cover;
+    background-position: right 35% bottom 0%;
+    background-repeat: no-repeat;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    .header-box {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      width: 50%;
+      overflow: hidden;
+      h1 {
+        margin-bottom: 1em;
+        transition-delay: .1s;
+      }
+
+      span {
+        margin-bottom: 1em;
+        transition-delay: .2s;
+      }
+      p {
+        margin: 0;
+        transition-delay: .3s;
+      }
+    }
+  }
+
 }
+
+
+  @media screen and (max-width: 640px) {
+    #app {
+      .header {
+        .header-box  {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+
+.before-enter {
+    transform: translateX(100px);
+    transition: all 1s cubic-bezier(.41, .01, .57, 1.61);
+  }
+
+  .enter {
+    transform: translateX(0px);
+  }
 
 h1, h2 {
   font-weight: normal;
+  margin: 0;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>
