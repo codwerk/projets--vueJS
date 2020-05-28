@@ -1,7 +1,9 @@
 <template lang="pug">
   <div id="app">
      .app_container
-
+      header.hdr-logo
+        figure
+          img(src="./assets/logo.png" alt="")
       .wrapper__list
         .wrapper__list-titles
           h2.wrapper__list-title hey, 
@@ -12,6 +14,9 @@
           h2.wrapper__list-title popular
         ul.list__items
           cardProduct(v-for="food in foods" :key="food.id" :food="food" v-if="food.cat == 'product'")
+      
+      aside.wrapper__sidebar
+        
 
   </div>
 </template>
@@ -140,10 +145,26 @@ export default {
 
 <style lang="scss">
 @import "./assets/scss/index.scss";
+
+/* Colors */ 
+$red: #c7161e;
+$gris: #f8f8f6;
+
+@mixin flex($flex, $justifyC) {
+  display: $flex;
+  justify-content: $justifyC;
+}
+
+%params-titles {
+  font-size: 1.5em;
+  color: #232425;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
   #app {
-    
-    display: flex;
-    justify-content: center;
+
+    @include flex(flex, center);
     padding: 10px;
     
     .app_container {
@@ -152,18 +173,25 @@ export default {
       width: 375px;
       height: 812px;
       position: relative;
-      padding: 10px 30px;
+      padding: 0 30px;
+      overflow-y: scroll;
+
+      .hdr-logo {
+        margin: 50px 0;
+        figure{
+          img {
+            transform: rotate(180deg);
+            width: 15%;
+          }
+        }
+      }
 
       .wrapper__list {
         .wrapper__list-titles {
 
-          margin:30px 0;
+          margin:15px 0;
           .wrapper__list-title {
-            font-size: 1.5em;
-            color: #232425;
-            margin: 5px 0;
-            font-weight: bold;
-            text-transform: capitalize;
+            @extend %params-titles;
           }
         
           .wrapper__list-title__intro{
@@ -174,10 +202,18 @@ export default {
 
 
         .list__items {
-          width: 70%;
-          display: flex;
+          @include flex(flex, null);
           flex-wrap: wrap;
         }
+      }
+
+      .wrapper__sidebar {
+        width: 30%;
+        min-height: 116vh;
+        background-color: #f8f8f6;
+        position: absolute;
+        top: 0;
+        right: 0;
       }
     }
   }

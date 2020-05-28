@@ -3,6 +3,7 @@
     figure.list__card-item__image
         img(:src="food.icon", alt="")
     h3.list__card-item__title {{ food.name }}
+    span.list__card-item__promo {{ food.promo }}
     
   
 </template>
@@ -23,18 +24,23 @@ export default {
 
 <style lang="scss">
   .list__card-item  {
-    width: 45%;
-    background-color: #eff0f1;
+    background-color: #f8f8f6;
+    width: 29%;
     border-radius: 20px;
+    cursor: pointer;
     padding: 10px;
     text-align: center;
-    margin: 5px 10px 5px 0px;
-    cursor: pointer;
+    margin: 5px;
+    
     transition: all .5s ease;
 
     &:hover {
-      background-color: #D90014;
+      background-color: #c7161e;
       color: #fff;
+
+      .list__card-item__promo {
+        background-color: rgba(255, 255, 255, 0.247);
+      }
     }
 
 
@@ -46,9 +52,17 @@ export default {
     }
 
     .list__card-item__title {
-      font-size: .75em;
+      font-size: .65em;
       text-align: center;
       font-weight: 600;
+    }
+
+    .list__card-item__promo {
+      font-size: .5em;
+      text-align: center;
+      font-weight: 600;
+      padding: 5px;
+      border-radius: 5px;
     }
     
   }
