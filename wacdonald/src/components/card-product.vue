@@ -9,27 +9,41 @@
 <script>
 export default {
   name: 'cardProduct',
-  props: {
-    food: [String, Number]
-  }
+  props: ['food']
 }
 </script>
 
 <style lang="scss" scoped>
   .list__card-item__popular {
-    width: 29%;
+    width: calc(100%/4);
     text-align: center;
-    margin: 5px;
     cursor: pointer;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     transition: all .5s ease;
+    overflow: hidden;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-color: #ffd548;
+      transform: translateX(-100px);
+      transition: all .5s ease;
+    }
 
     &:hover {
-      background-color: #ffd548;
       color: #fff;
-      border-radius: 20px;
+
+
+      &:before {
+        transform: translateX(0);
+      }
 
       .list__card-item__price {
         color: inherit;
@@ -50,7 +64,7 @@ export default {
     }
 
     .list__card-item__price {
-      font-size: .55em;
+      font-size: .65em;
       margin: 5px 0;
       color: #ffd548;
     }

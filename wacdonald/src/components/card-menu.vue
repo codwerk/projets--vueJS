@@ -3,17 +3,18 @@
     figure.list__card-item__image
         img(:src="food.icon", alt="")
     h3.list__card-item__title {{ food.name }}
-    span.list__card-item__promo {{ food.promo }}
+    template(v-if="food.promo")
+      span.list__card-item__promo {{ food.promo }}
     
-  
+
 </template>
 
 <script>
 export default {
   name: 'cardMenu',
-  props: {
-    food: [String, Number]
-  },
+  props:
+    ['food']
+  ,
   data() {
     return {
      
@@ -25,14 +26,17 @@ export default {
 <style lang="scss">
   .list__card-item  {
     background-color: #f8f8f6;
-    width: 29%;
+    width: 31%;
     border-radius: 20px;
     cursor: pointer;
     padding: 10px;
     text-align: center;
-    margin: 5px;
-    
+    margin-bottom: 10px;
     transition: all .5s ease;
+
+    &:not(:nth-child(3n)){
+      margin-right: 10px;
+    }
 
     &:hover {
       background-color: #c7161e;
