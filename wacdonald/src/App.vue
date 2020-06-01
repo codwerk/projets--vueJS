@@ -13,10 +13,20 @@
         .wrapper__list-titles
           h2.wrapper__list-title popular
         ul.list__items
-          cardProduct(v-for="food in foods" :key="food.id" :food="food" v-if="food.cat == 'product'")
+          cardProduct(v-for="(food, i) in foods" :key="food.id" :food="food" v-if="food.cat == 'product'")
       
       aside.wrapper__sidebar
-        
+        header.hdr__wrapper-btn
+          div
+        .wrapper__sidebar-titles
+          h2.wrapper__sidebar-title My
+            br
+            | order
+          span.wrapper__sidebar-title__intro take out
+        ul.list__items
+          cardCommande(v-for="(commande, i) in commandes" :key="commande.id" :commande="commande")
+        cardResultat
+
 
   </div>
 </template>
@@ -25,11 +35,13 @@
 
   import cardMenu from './components/card-menu';
   import cardProduct from './components/card-product';
+  import cardCommande from './components/card-commande';
+  import cardResultat from './components/card-resultat';
 
 export default {
 
   name: 'app',
-  components: { cardMenu, cardProduct },
+  components: { cardMenu, cardProduct, cardCommande, cardResultat },
   data () {
     return {
       foods: [
@@ -137,6 +149,32 @@ export default {
             "icon": require('./assets/img/pizza.svg'),
             "cat": "menu"
         }
+          ],
+          commandes: [
+            {
+            "id": 1,
+            "name": "Combo Meal",
+            "promo": "20% off",
+            "price": 4.5,
+            "icon": require('./assets/img/sandwich.svg'),
+            "cat": "menu"
+        },
+        {
+            "id": 2,
+            "name": "Burgers & Sandiches",
+            "promo": null,
+            "price": 5,
+            "icon": require('./assets/img/birthday-cake.svg'),
+            "cat": "menu"
+        },
+        {
+            "id": 3,
+            "name": "Happy Meal",
+            "promo": null,
+            "price": 4.2,
+            "icon": require('./assets/img/burger.svg'),
+            "cat": "menu"
+        }
           ]
     }
   }
@@ -168,7 +206,7 @@ $gris: #f8f8f6;
     padding: 10px;
     
     .app_container {
-      border: 2px solid #000;
+      border: 4px solid #000;
       border-radius: 50px;
       width: 375px;
       height: 812px;
@@ -177,7 +215,7 @@ $gris: #f8f8f6;
       overflow-y: scroll;
 
       .hdr-logo {
-        margin: 50px 0;
+        margin: 60px 0;
         figure{
           img {
             transform: rotate(180deg);
@@ -188,8 +226,8 @@ $gris: #f8f8f6;
 
       .wrapper__list {
         .wrapper__list-titles {
+          margin:20px 0;
 
-          margin:15px 0;
           .wrapper__list-title {
             @extend %params-titles;
           }
@@ -199,7 +237,6 @@ $gris: #f8f8f6;
             color: #232425;
           }
         }
-
 
         .list__items {
           @include flex(flex, null);
@@ -214,6 +251,43 @@ $gris: #f8f8f6;
         position: absolute;
         top: 0;
         right: 0;
+        padding: 12px 15px;
+        border-left-color: #f7f7f5;
+
+        .hdr__wrapper-btn {
+            display: flex;
+            flex-direction: row-reverse;
+            margin: 60px 0;
+
+          div {
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 50px;
+          }
+        }
+
+        .wrapper__sidebar-titles {
+          text-transform: capitalize;
+          margin: 15px 0;
+          padding: 0px 10px;
+
+          .wrapper__sidebar-title {
+            font-size: 1em;
+            color: #232425;
+            font-weight: bold;
+          }
+
+          .wrapper__sidebar-title__intro {
+            font-size: .75em;
+            color: #7b7b79;
+          }
+        }
+
+        .list__items {
+          margin-bottom: 50px;
+          
+        }
       }
     }
   }
